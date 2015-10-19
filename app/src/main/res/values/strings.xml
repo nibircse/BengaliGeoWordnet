@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Bengali GeoWordNet</string>
+
+    <string name="title_section1">Insert Data</string>
+    <string name="title_section2">View History</string>
+    <string name="title_section3">View Profile</string>
+    <string name="title_section4">Login</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="buttonLoadCoordinate">Load Coordinate</string>
+    <string name="buttonResetCoordinate">Reset Coordinate</string>
+
+    <string name="buttonLogin">Login</string>
+
+    <string name="textView_profile_name">Name : </string>
+    <string name="textView_profile_email">Email : </string>
+    <string name="textView_profile_token">Token : </string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+
+    <string-array name="feature_class">
+        <item>Country, state, region</item>
+        <item>Stream, Lake, Waterbody</item>
+        <item>Parks, Areas</item>
+        <item>Roads, Railways</item>
+        <item>Buildings, Farms, Spots</item>
+        <item>Mountain, Hill, Rocks</item>
+        <item>Undersea</item>
+        <item>Forest, Trees</item>
+    </string-array>
+
+</resources>
