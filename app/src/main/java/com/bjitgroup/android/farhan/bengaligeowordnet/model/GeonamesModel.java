@@ -10,7 +10,7 @@ public class GeonamesModel {
 
     /**
      * integer id of record in geonames database
-     * @var int(11) NOT NULL 
+     * @var int(11) NOT NULL
      */
     private int geonameid;
 
