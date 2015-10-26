@@ -31,6 +31,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.Scopes;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.plus.Plus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +43,9 @@ import java.util.Map;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class PlaceholderFragment extends Fragment implements View.OnClickListener {
+public class PlaceholderFragment extends Fragment implements
+        View.OnClickListener, GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
 
     /**
      * The fragment argument representing the section number for this
@@ -54,6 +61,8 @@ public class PlaceholderFragment extends Fragment implements View.OnClickListene
     private EditText bUsername, bPassword;
     private TextView errorText;
     private Button login;
+
+    private GoogleApiClient mGoogleApiClient;
 
 
     private LocationListener locLsnr = new LocationListener() {
@@ -109,6 +118,16 @@ public class PlaceholderFragment extends Fragment implements View.OnClickListene
         else {
             rootView = inflater.inflate(R.layout.fragment_insert, container, false);
             fragment_insert_jobs(rootView);
+
+            mGoogleApiClient = new GoogleApiClient.Builder(getContext())
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(Plus.API)
+                    .addScope(new Scope(Scopes.PROFILE))
+                    .build();
+
+
+            mGoogleApiClient.connect();
         }
         return rootView;
     }
@@ -137,12 +156,15 @@ public class PlaceholderFragment extends Fragment implements View.OnClickListene
             latitude.setText("");
         } else if (v.getId() == R.id.buttonLogin) {
 
+
             if (ContextCompat.checkSelfPermission(getActivity(),
                     Manifest.permission.INTERNET) == PackageManager.PERMISSION_DENIED) {
                 ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.INTERNET}, 0);
             }
+
             String userName = bUsername.getText().toString();
             String passWord = bPassword.getText().toString();
+
 
             //errorText.setVisibility(View.INVISIBLE);
             //Toast.makeText(getActivity(), "LOGIN BUTTON", Toast.LENGTH_SHORT).show();
@@ -231,5 +253,20 @@ public class PlaceholderFragment extends Fragment implements View.OnClickListene
         // http://developer.android.com/training/volley/simple.html#simple
         //
         return "";
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
     }
 }
